@@ -1,0 +1,23 @@
+spring:
+      application:
+                 name: examsimulator
+# Oracle Settings
+      datasource:
+                 url: jdbc:oracle:thin:@localhost:1521/orclpdb1.fios-router.home
+                 username: examsimulator
+                 password: examsimulator
+                 driver-class-name: oracle.jdbc.OracleDriver
+      jpa:
+         hibernate:
+                  ddl-auto: update  
+         database-platform: org.hibernate.dialect.Oracle12cDialect
+         show-sql: true
+         properties:
+                 hibernate:
+                          format_sql:true
+      
+                          
+         
+                                           
+server:
+      port: 8085     
