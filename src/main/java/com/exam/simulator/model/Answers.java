@@ -1,7 +1,6 @@
 package com.exam.simulator.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +24,8 @@ import lombok.ToString;
 public class Answers implements Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Answers_Squence")
-    @SequenceGenerator(name = "Answers_Squence", sequenceName = "ANSWERS_ID_SEQ", initialValue=1, allocationSize=1)
-	@Column(name="ANSWERS_ID")
+    @SequenceGenerator(name = "Answers_Squence", sequenceName = "ANSWER_ID_SEQ", initialValue=1, allocationSize=1)
+	@Column(name="ANSWER_ID")
 	private Integer answerId;
 	@Column(name="ANSWER")
 	private String answer;
