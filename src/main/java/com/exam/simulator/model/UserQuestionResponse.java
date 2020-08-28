@@ -48,7 +48,8 @@ public class UserQuestionResponse implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="ANSWER_ID",referencedColumnName = "ANSWER_ID") 
 	private  Answers answer;
-	
+	@Column(name="USER_RESPONSE") 
+	private Boolean userResponse;
 	@Column(name="CREATED_BY")
 	private String createdBy;
 	@Column(name="CREATED_DATE")
