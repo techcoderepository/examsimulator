@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.exam.simulator.model.Questions;
 import com.exam.simulator.model.UserQuestionResponse;
+import com.exam.simulator.model.Users;
 import com.exam.simulator.repository.QuestionsRepositiory;
 import com.exam.simulator.repository.UserQuestionResponseRepositiory;
+import com.exam.simulator.repository.UsersRepositiory;
 
 
 @RestController
@@ -22,6 +24,10 @@ public class ExamSimulatorController {
 	
 	@Autowired
 	private UserQuestionResponseRepositiory userQuestionResponseRepositiory;
+	
+	@Autowired
+	private UsersRepositiory usersRepositiory;
+	
 	
 	@GetMapping("/getQuestion/{questionId}")
 	public Optional<Questions> getQuestion(@PathVariable("questionId") Integer questionId){			
@@ -43,5 +49,10 @@ public class ExamSimulatorController {
 	  public void saveUserQuestionResponse(@PathVariable("userId") String userId, @RequestBody UserQuestionResponse userQuestionResponse ){ 
 		  userQuestionResponseRepositiory.save(userQuestionResponse);
 	  }
+	  
+	  @PostMapping(value="/addUsers") 
+	  public void saveUserQuestionResponse(@RequestBody Users user){ 
+		  usersRepositiory.save(user);
+	  } 
 	  
 }

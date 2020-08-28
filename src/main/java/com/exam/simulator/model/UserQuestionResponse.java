@@ -3,11 +3,13 @@ package com.exam.simulator.model;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,19 +23,31 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "USER_QUESTION_RESPONSE")
+@IdClass(IdClassUser.class)
 public class UserQuestionResponse implements Serializable {
-
-	@OneToOne(targetEntity=Users.class,cascade = CascadeType.ALL)	  
+	
+	@Id
+	@MapsId("USER_ID")
+	@ManyToOne(optional = false)	  
 	@JoinColumn(name="USER_ID",referencedColumnName = "USER_ID") 
 	private  Users user;
-	
-	@OneToOne(targetEntity=Certifications.class,cascade = CascadeType.ALL)	  
+	@Id
+	@MapsId("CERTIFICATION_ID")
+	@ManyToOne(optional = false)	  
 	@JoinColumn(name="CERTIFICATION_ID",referencedColumnName = "CERTIFICATION_ID") 
 	private  Certifications certification;
-	
-	@OneToOne(targetEntity=Questions.class,cascade = CascadeType.ALL)	  
+
+	@Id
+	@MapsId("QUESTION_ID")
+	@ManyToOne(optional = false)
 	@JoinColumn(name="QUESTION_ID",referencedColumnName = "QUESTION_ID") 
 	private  Questions question;
+	
+	@Id
+	@MapsId("ANSWER_ID")
+	@ManyToOne(optional = false)
+	@JoinColumn(name="ANSWER_ID",referencedColumnName = "ANSWER_ID") 
+	private  Answers answer;
 	
 	@Column(name="CREATED_BY")
 	private String createdBy;

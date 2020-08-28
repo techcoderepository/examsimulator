@@ -1,3 +1,10 @@
+drop table QUESTIONS;
+drop table Answers;
+drop table user_question_response;
+drop table users;
+drop table certifications;
+drop table feedback_question;
+
 CREATE TABLE QUESTIONS
 ( QUESTION_ID NUMBER PRIMARY KEY,
 QUESTION VARCHAR(2000)
@@ -76,6 +83,7 @@ INSERT INTO CERTIFICATIONS VALUES(1,'1Z0-071','Oracle Database SQL','Oracle','bk
 commit;
 
 
+ drop table USER_QUESTION_RESPONSE;
  
 CREATE TABLE USER_QUESTION_RESPONSE
 (USER_ID VARCHAR(15) REFERENCES USERS(USER_ID),
@@ -104,4 +112,6 @@ INSERT INTO USER_QUESTION_RESPONSE VALUES('bkumar',1,3,12,0,'bkumar',sysdate,'bk
 commit;
 
 CREATE SEQUENCE CERTIFICATION_ID_SEQ START WITH 1 INCREMENT BY 1;
+
+select * from USER_QUESTION_RESPONSE;
 

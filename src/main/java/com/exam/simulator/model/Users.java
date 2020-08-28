@@ -5,7 +5,10 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ColumnDefault;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,15 +27,16 @@ public class Users implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
 	@Column(name="USER_ID")
-	private Users userId;
+	private String userId;
 	@Column(name="FIRST_NAME")
 	private String firstName;
 	@Column(name="LAST_NAME")
 	private String lastName;
 	@Column(name="CREATED_BY")
 	private String createdBy;
-	@Column(name="CREATED_DATE")
+	@Column(name="CREATED_DATE" , insertable=false, nullable = false, columnDefinition = "Date default sysdate")	
 	private Date createdDate;
 	@Column(name="MODIFIED_BY")
 	private String modifiedBy;
