@@ -10,6 +10,5 @@ import com.exam.simulator.model.UserQuestionResponse;
 
 @Repository
 public interface UserQuestionResponseRepositiory extends JpaRepository<UserQuestionResponse,IdClassUser>{
-	//List<UserQuestionResponse> findByIdClassUserId(IdClassUser idClassUser);	
 
 }
