@@ -51,6 +51,15 @@ public class UserController {
 		  return usersRepositiory.findByEmailId(emailId);
 	  } 
 	  
+	  @GetMapping(value="/validateUser/{emailId}") 
+	  public String validateUser(@PathVariable(value = "emailId") String emailId){ 
+		  List<Users> userList = usersRepositiory.findByEmailId(emailId);
+		   if(userList.isEmpty()) {
+			   return "fail";
+		   }
+		  return "success";
+	  } 
+	  
 	  @DeleteMapping("/deleteUser/{userId}")
 	    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "userId") String userId)
 	         throws ResourceNotFoundException {
