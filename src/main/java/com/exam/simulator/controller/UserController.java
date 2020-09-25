@@ -36,9 +36,7 @@ public class UserController {
 		  Users user = usersRepositiory.findById(userId)
 	       .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
-	       // user.setUserId(form.getUserId());
-	        user.setFirstName(form.getFirstName());
-	        user.setLastName(form.getLastName());
+	        user.setFullName(form.getFullName());
 	        final Users updatedUser = usersRepositiory.save(user);
 	        return ResponseEntity.ok(updatedUser);
 	  } 
@@ -49,8 +47,8 @@ public class UserController {
 	  }
 	  
 	  @GetMapping(value="/getUserById/{userId}") 
-	  public List<Users> getUserById(@PathVariable(value = "userId") String userId){ 
-		  return usersRepositiory.findByUserId(userId);
+	  public List<Users> getUserById(@PathVariable(value = "userId") String emailId){ 
+		  return usersRepositiory.findByEmailId(emailId);
 	  } 
 	  
 	  @DeleteMapping("/deleteUser/{userId}")

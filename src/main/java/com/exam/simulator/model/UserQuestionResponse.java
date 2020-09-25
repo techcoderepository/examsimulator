@@ -27,9 +27,9 @@ import lombok.ToString;
 public class UserQuestionResponse implements Serializable {
 	
 	@Id
-	@MapsId("USER_ID")
+	@MapsId("EMAIL_ID")
 	@ManyToOne(optional = false)	  
-	@JoinColumn(name="USER_ID",referencedColumnName = "USER_ID") 
+	@JoinColumn(name="EMAIL_ID",referencedColumnName = "EMAIL_ID") 
 	private  Users user;
 	@Id
 	@MapsId("CERTIFICATION_ID")

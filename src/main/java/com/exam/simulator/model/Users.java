@@ -28,19 +28,13 @@ public class Users implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="USER_ID")
-	private String userId;
-	@Column(name="FIRST_NAME")
-	private String firstName;
-	@Column(name="LAST_NAME")
-	private String lastName;
-	@Column(name="CREATED_BY")
-	private String createdBy;
-	@Column(name="CREATED_DATE" , insertable=false, nullable = false, columnDefinition = "Date default sysdate")	
-	private Date createdDate;
-	@Column(name="MODIFIED_BY")
-	private String modifiedBy;
-	@Column(name="MODIFIED_DATE")
-	private Date modifiedDate;
+	@Column(name="EMAIL_ID")
+	private String emailId;
+	@Column(name="FULL_NAME")
+	private String fullName;		
+	@Column(name="PASSSWORD")
+	private String password;
+	
+	
 		
 }
