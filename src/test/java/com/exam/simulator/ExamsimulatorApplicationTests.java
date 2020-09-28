@@ -9,5 +9,9 @@ class ExamsimulatorApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+	
+	@Test
+	void contextLoads1() {
+	}
 
 }
