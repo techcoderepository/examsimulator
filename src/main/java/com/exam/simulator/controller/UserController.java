@@ -54,10 +54,12 @@ public class UserController {
 	  @GetMapping(value="/validateUser/{emailId}") 
 	  public String validateUser(@PathVariable(value = "emailId") String emailId){ 
 		  List<Users> userList = usersRepositiory.findByEmailId(emailId);
-		   if(userList.isEmpty()) {
-			   return "fail";
+		   if(!userList.isEmpty()) {
+			   for(Users user:userList) {
+				   return user.getFullName();			   
+		   		}
 		   }
-		  return "success";
+		  return "Invalid User";
 	  } 
 	  
 	  @DeleteMapping("/deleteUser/{userId}")
