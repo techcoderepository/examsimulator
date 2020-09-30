@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exam.simulator.exception.ResourceNotFoundException;
-import com.exam.simulator.model.Users;
+import com.exam.simulator.model.User;
 import com.exam.simulator.repository.UsersRepositiory;
 
 
@@ -28,34 +28,34 @@ public class UserController {
 	private UsersRepositiory usersRepositiory;
 	
 	  @PostMapping(value="/createUser") 
-	  public void saveUser(@RequestBody Users user){ 
+	  public void saveUser(@RequestBody User user){ 
 		  usersRepositiory.save(user);
 	  } 
 	  @PutMapping(value="/updateUser/{userId}") 
-	  public ResponseEntity<Users> updateUser(@PathVariable(value = "userId") String userId, @Valid @RequestBody Users form)throws ResourceNotFoundException {
-		  Users user = usersRepositiory.findById(userId)
+	  public ResponseEntity<User> updateUser(@PathVariable(value = "userId") String userId, @Valid @RequestBody User form)throws ResourceNotFoundException {
+		  User user = usersRepositiory.findById(userId)
 	       .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
 	        user.setFullName(form.getFullName());
-	        final Users updatedUser = usersRepositiory.save(user);
+	        final User updatedUser = usersRepositiory.save(user);
 	        return ResponseEntity.ok(updatedUser);
 	  } 
 	  
 	  @GetMapping(value="/getAllUsers") 
-	  public List<Users> getAllUsers(){ 
+	  public List<User> getAllUsers(){ 
 		  return usersRepositiory.findAll();
 	  }
 	  
 	  @GetMapping(value="/getUserById/{userId}") 
-	  public List<Users> getUserById(@PathVariable(value = "userId") String emailId){ 
+	  public List<User> getUserById(@PathVariable(value = "userId") String emailId){ 
 		  return usersRepositiory.findByEmailId(emailId);
 	  } 
 	  
 	  @GetMapping(value="/validateUser/{emailId}") 
 	  public String validateUser(@PathVariable(value = "emailId") String emailId){ 
-		  List<Users> userList = usersRepositiory.findByEmailId(emailId);
+		  List<User> userList = usersRepositiory.findByEmailId(emailId);
 		   if(!userList.isEmpty()) {
-			   for(Users user:userList) {
+			   for(User user:userList) {
 				   return user.getFullName();			   
 		   		}
 		   }
@@ -65,7 +65,7 @@ public class UserController {
 	  @DeleteMapping("/deleteUser/{userId}")
 	    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "userId") String userId)
 	         throws ResourceNotFoundException {
-	        Users user = usersRepositiory.findById(userId)
+	        User user = usersRepositiory.findById(userId)
 	       .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
 	        usersRepositiory.deleteById(userId);

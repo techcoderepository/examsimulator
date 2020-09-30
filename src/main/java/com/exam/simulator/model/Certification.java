@@ -1,13 +1,14 @@
 package com.exam.simulator.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,7 +23,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "CERTIFICATIONS")
-public class Certifications implements Serializable{
+public class Certification implements Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Certifications_Squence")
     @SequenceGenerator(name = "Certifications_Squence", sequenceName = "CERTIFICATION_ID_SEQ", initialValue=1, allocationSize=1)
@@ -33,14 +34,9 @@ public class Certifications implements Serializable{
 	@Column(name="CERTIFICATION_TITLE")
 	private String certificationTitle;
 	@Column(name="CERTIFICATION_BY_COMPANY")	
-	private String certificationByCompany;
-	@Column(name="CREATED_BY")
-	private String createdBy;
-	@Column(name="CREATED_DATE")
-	private Date createdDate;
-	@Column(name="MODIFIED_BY")
-	private String modifiedBy;
-	@Column(name="MODIFIED_DATE")
-	private Date modifiedDate;
+	private String certificationByCompany;		
+	
+	
+	
 	
 }

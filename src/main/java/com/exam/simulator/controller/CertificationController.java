@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exam.simulator.model.Certifications;
+import com.exam.simulator.model.Certification;
 import com.exam.simulator.repository.CertificationsRepositiory;
 
 
@@ -19,12 +19,12 @@ public class CertificationController {
 	private CertificationsRepositiory certificationsRepositiory;
 	  
 	  @PostMapping(value="/addCertification") 
-	  public void addCertifications(@RequestBody Certifications certification){ 
+	  public void addCertifications(@RequestBody Certification certification){ 
 		  certificationsRepositiory.save(certification);
 	  } 
 	  
 	  @GetMapping(value="/getCertifications") 
-	  public List<Certifications> getAllUsers(){ 
+	  public List<Certification> getAllUsers(){ 
 		  return certificationsRepositiory.findAll();
 	  }
 }

@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.exam.simulator.model.Users;
+import com.exam.simulator.model.User;
 
 @Repository
-public interface UsersRepositiory extends JpaRepository<Users, String>{
+public interface UsersRepositiory extends JpaRepository<User, String>{
 
-	List<Users> findByEmailId(String emailId);
+	List<User> findByEmailId(String emailId);
 }

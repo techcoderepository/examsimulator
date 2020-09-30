@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exam.simulator.model.ExamSchedule;
-import com.exam.simulator.model.Users;
+import com.exam.simulator.model.User;
 import com.exam.simulator.repository.ExamScheduleRepositiory;
 
 
@@ -28,4 +29,12 @@ public class ExamScheduleController {
 	  public List<ExamSchedule> getScheduledExamList(){ 
 		  return examScheduleRepositiory.findAll();
 	  }
+	  
+	
+	  @GetMapping(value="/getScheduledExamListByEmailId/{userEmailId}") public
+	  List<ExamSchedule> getScheduledExamListByEmailId(@PathVariable(value = "userEmailId") String userEmailId){
+	  	  
+	  return examScheduleRepositiory.findByUser(new User(userEmailId)); 
+	  }
+	 
 }

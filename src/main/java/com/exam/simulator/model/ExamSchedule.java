@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,15 +32,17 @@ public class ExamSchedule implements Serializable {
 	@Column(name="EXAM_SCHEDULE_ID")
 	private Integer examScheduleId;
 	
+	@ManyToOne
+	@JoinColumn(name="CERTIFICATION_ID",referencedColumnName = "CERTIFICATION_ID") 
+	private Certification certification;
+	
 	@Column(name = "EXAM_DATE")
 	private Date examDate;	
 	
 	@Column(name="EXAM_TIME")
 	private String examTime;		
 	
-	@Column(name="USER_EMAIL_ID")
-	private  String userEmailId;	 
-	  	
-	  
-	  
+	@ManyToOne
+	@JoinColumn(name="USER_EMAIL_ID", referencedColumnName = "EMAIL_ID") 
+	private  User user;	 	  
 }

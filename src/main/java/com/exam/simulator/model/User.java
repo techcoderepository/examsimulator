@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "USERS")
-public class Users implements Serializable{
+public class User implements Serializable{
 
 	/**
 	 * 
@@ -35,6 +35,8 @@ public class Users implements Serializable{
 	@Column(name="PASSSWORD")
 	private String password;
 	
-	
+	public User(String emailId) {
+		this.emailId=emailId;
+	}
 		
 }

@@ -30,12 +30,12 @@ public class UserQuestionResponse implements Serializable {
 	@MapsId("EMAIL_ID")
 	@ManyToOne(optional = false)	  
 	@JoinColumn(name="EMAIL_ID",referencedColumnName = "EMAIL_ID") 
-	private  Users user;
+	private  User user;
 	@Id
 	@MapsId("CERTIFICATION_ID")
 	@ManyToOne(optional = false)	  
 	@JoinColumn(name="CERTIFICATION_ID",referencedColumnName = "CERTIFICATION_ID") 
-	private  Certifications certification;
+	private  Certification certification;
 
 	@Id
 	@MapsId("QUESTION_ID")
