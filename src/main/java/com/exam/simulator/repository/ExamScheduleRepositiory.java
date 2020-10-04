@@ -12,5 +12,5 @@ import com.exam.simulator.model.User;
 public interface ExamScheduleRepositiory extends JpaRepository<ExamSchedule, Integer>{
 
 	List<ExamSchedule> findByExamScheduleId(String emailId);
-	List<ExamSchedule> findByUser(User user);
+	List<ExamSchedule> findByUser(User user);	
 }
