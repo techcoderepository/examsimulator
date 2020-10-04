@@ -25,19 +25,14 @@ public class ExamScheduleController {
 	  public void saveExamSchedule(@RequestBody ExamSchedule examSchedule){ 
 		  examScheduleRepositiory.save(examSchedule);
 	  }
-	  
-	  @GetMapping(value="/getScheduledExamList") 
-	  public List<ExamSchedule> getScheduledExamList(){ 
-		  return examScheduleRepositiory.findAll();
-	  }
-	
-	  @GetMapping(value="/getScheduledExamListByEmailId/{userEmailId}") public
-	  List<ExamSchedule> getScheduledExamListByEmailId(@PathVariable(value = "userEmailId") String userEmailId){
+	  	
+	  @GetMapping(value="/getScheduledExamListByEmailId/{userEmailId}") 
+	  public List<ExamSchedule> getScheduledExamListByEmailId(@PathVariable(value = "userEmailId") String userEmailId){
 	  return examScheduleRepositiory.findByUser(new User(userEmailId)); 
 	  }
 	  
 	  @DeleteMapping(value="/deleteByExamScheduleId/{examScheduleId}") 
-	  void  deleteScheduledExamListByEmailId(@PathVariable(value = "examScheduleId") String examScheduleId){	  	  
+	  public void  deleteScheduledExamListByEmailId(@PathVariable(value = "examScheduleId") String examScheduleId){	  	  
 		 examScheduleRepositiory.deleteById(Integer.valueOf(examScheduleId));	  	  
 	  }
 	 
