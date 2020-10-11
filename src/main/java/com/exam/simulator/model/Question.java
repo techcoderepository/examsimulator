@@ -24,22 +24,24 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "QUESTIONS")
-public class Questions implements Serializable {
+@Table(name = "QUESTION")
+public class Question implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Questions_Squence")
-    @SequenceGenerator(name = "Questions_Squence", sequenceName = "QUESTION_ID_SEQ", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Question_Squence")
+    @SequenceGenerator(name = "Question_Squence", sequenceName = "QUESTION_ID_SEQ", initialValue=1, allocationSize=1)
 	@Column(name="QUESTION_ID")
 	private Integer questionId;
 	
 	@Column(name="QUESTION")
 	private String question;	
 	
+	@Column(name="IS_MULTIPLE_CHHOICE")
+	private Boolean multipleChoice;	
 	
-	  @OneToMany(targetEntity=Answers.class,cascade = CascadeType.ALL)	  
+	  @OneToMany(targetEntity=Answer.class,cascade = CascadeType.ALL)	  
 	  @JoinColumn(name="QUESTION_ID",referencedColumnName = "QUESTION_ID") 
-	  private  List<Answers> answers;
+	  private  List<Answer> answer;
 	 
 	
 }

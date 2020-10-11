@@ -28,7 +28,8 @@ public class ExamScheduleController {
 	  	
 	  @GetMapping(value="/getScheduledExamListByEmailId/{userEmailId}") 
 	  public List<ExamSchedule> getScheduledExamListByEmailId(@PathVariable(value = "userEmailId") String userEmailId){
-	  return examScheduleRepositiory.findByUser(new User(userEmailId)); 
+		  List<ExamSchedule> abc = examScheduleRepositiory.findByUser(new User(userEmailId)); 
+	   return abc;
 	  }
 	  
 	  @DeleteMapping(value="/deleteByExamScheduleId/{examScheduleId}") 

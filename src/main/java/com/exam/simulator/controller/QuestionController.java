@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exam.simulator.model.Questions;
+import com.exam.simulator.model.Question;
 import com.exam.simulator.repository.QuestionsRepositiory;
 
 
@@ -20,18 +20,18 @@ public class QuestionController {
 	private QuestionsRepositiory questionsRepositiory;
 	
 	@GetMapping("/getQuestion/{questionId}")
-	public Optional<Questions> getQuestion(@PathVariable("questionId") Integer questionId){			
+	public Optional<Question> getQuestion(@PathVariable("questionId") Integer questionId){			
 		return 	questionsRepositiory.findById(questionId);
 				
 	}
 	
 	@GetMapping("/getAllQuestions")
-	public Iterable<Questions> getAllQuestions(){			
+	public Iterable<Question> getAllQuestions(){			
 		return 	questionsRepositiory.findAll();				
 	}
 	
 	  @PostMapping(value="/addQuestion") 
-	  public Questions addQuestion(@RequestBody Questions question ){ 
+	  public Question addQuestion(@RequestBody Question question ){ 
 		  return questionsRepositiory.save(question);
 	  }	 
 }

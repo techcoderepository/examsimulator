@@ -20,8 +20,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "ANSWERS")
-public class Answers implements Serializable{
+@Table(name = "ANSWER")
+public class Answer implements Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Answers_Squence")
     @SequenceGenerator(name = "Answers_Squence", sequenceName = "ANSWER_ID_SEQ", initialValue=1, allocationSize=1)

@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.exam.simulator.model.Answers;
+import com.exam.simulator.model.Answer;
 
 @Repository
-public interface AnswersRepositiory extends JpaRepository<Answers, Integer>{
+public interface AnswerRepositiory extends JpaRepository<Answer, Integer>{
 
-	List<Answers> findByAnswerId(Integer AnswerId);
+	List<Answer> findByAnswerId(Integer AnswerId);
 }

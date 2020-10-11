@@ -41,13 +41,13 @@ public class UserQuestionResponse implements Serializable {
 	@MapsId("QUESTION_ID")
 	@ManyToOne(optional = false)
 	@JoinColumn(name="QUESTION_ID",referencedColumnName = "QUESTION_ID") 
-	private  Questions question;
+	private  Question question;
 	
 	@Id
 	@MapsId("ANSWER_ID")
 	@ManyToOne(optional = false)
 	@JoinColumn(name="ANSWER_ID",referencedColumnName = "ANSWER_ID") 
-	private  Answers answer;
+	private  Answer answer;
 	@Column(name="USER_RESPONSE") 
 	private Boolean userResponse;
 	@Column(name="CREATED_BY")
