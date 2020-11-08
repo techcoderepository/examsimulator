@@ -20,4 +20,5 @@ spring:
          
                                            
 server:
-      port: 8085     
+      port: 8085
+originurl: http://ebf98d9f9393.ngrok.io           

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.exam.simulator.model.Certification;
 import com.exam.simulator.repository.CertificationsRepositiory;
 
-
-@RestController @CrossOrigin(origins = "http://localhost:4200")
+@RestController @CrossOrigin(origins = "*")
+//@RestController @CrossOrigin(origins = "http://localhost:4200")
 public class CertificationController {	
 	@Autowired
 	private CertificationsRepositiory certificationsRepositiory;

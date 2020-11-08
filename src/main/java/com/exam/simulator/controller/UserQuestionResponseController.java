@@ -25,7 +25,8 @@ import com.exam.simulator.repository.QuestionsRepositiory;
 import com.exam.simulator.repository.UserQuestionResponseRepositiory;
 
 
-@RestController @CrossOrigin(origins = "http://localhost:4200")
+//@RestController @CrossOrigin(origins = "http://localhost:4200")
+@RestController @CrossOrigin(origins = "*")
 public class UserQuestionResponseController {	
 	@Autowired
 	private UserQuestionResponseRepositiory userQuestionResponseRepositiory;

@@ -16,7 +16,7 @@ import com.exam.simulator.repository.QuestionsRepositiory;
 
 
 //@RestController @CrossOrigin(origins = "http://localhost:4200")
-@RestController @CrossOrigin(origins = "http://d45b3334418e.ngrok.io") 
+@RestController @CrossOrigin(origins = "*") 
 
 public class QuestionController {	
 	@Autowired
