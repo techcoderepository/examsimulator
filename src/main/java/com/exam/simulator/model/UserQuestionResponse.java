@@ -1,15 +1,18 @@
 package com.exam.simulator.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -23,39 +26,27 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "USER_QUESTION_RESPONSE")
-@IdClass(IdClassUser.class)
-public class UserQuestionResponse implements Serializable {
+public class UserQuestionResponse implements Serializable {	
 	
 	@Id
-	@MapsId("EMAIL_ID")
-	@ManyToOne(optional = false)	  
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "UserQuestionResponse_Squence")
+    @SequenceGenerator(name = "UserQuestionResponse_Squence", sequenceName = "USER_QUESTION_RESPONSE_SEQ", initialValue=1, allocationSize=1)
+	@Column(name="USER_QUESTION_RESPONSE_ID")
+	private Integer userQuestionResponseId;
+	
+	@ManyToOne(targetEntity=User.class)
 	@JoinColumn(name="EMAIL_ID",referencedColumnName = "EMAIL_ID") 
 	private  User user;
-	@Id
-	@MapsId("CERTIFICATION_ID")
-	@ManyToOne(optional = false)	  
+		  
+	@ManyToOne(targetEntity=Certification.class)
 	@JoinColumn(name="CERTIFICATION_ID",referencedColumnName = "CERTIFICATION_ID") 
 	private  Certification certification;
-
-	@Id
-	@MapsId("QUESTION_ID")
-	@ManyToOne(optional = false)
+		
+	@ManyToOne(targetEntity=Question.class)
 	@JoinColumn(name="QUESTION_ID",referencedColumnName = "QUESTION_ID") 
 	private  Question question;
-	
-	@Id
-	@MapsId("ANSWER_ID")
-	@ManyToOne(optional = false)
-	@JoinColumn(name="ANSWER_ID",referencedColumnName = "ANSWER_ID") 
-	private  Answer answer;
-	@Column(name="USER_RESPONSE") 
-	private Boolean userResponse;
-	@Column(name="CREATED_BY")
-	private String createdBy;
-	@Column(name="CREATED_DATE")
-	private Date createdDate;
-	@Column(name="MODIFIED_BY")
-	private String modifiedBy;
-	@Column(name="MODIFIED_DATE")
-	private Date modifiedDate;
+		
+	 @OneToMany(targetEntity=OptionResponse.class,cascade = CascadeType.ALL)	  
+	 @JoinColumn(name="USER_QUESTION_RESPONSE_ID",referencedColumnName = "USER_QUESTION_RESPONSE_ID") 
+	 private  List<OptionResponse> optionResponse;
 }

@@ -1,14 +1,13 @@
 package com.exam.simulator.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
+import org.springframework.stereotype.Repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +20,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "USERS")
+@Repository
 public class User implements Serializable{
 
 	/**

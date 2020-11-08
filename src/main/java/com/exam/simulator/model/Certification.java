@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Repository;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "CERTIFICATIONS")
+@Repository
 public class Certification implements Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Certifications_Squence")

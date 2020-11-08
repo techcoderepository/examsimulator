@@ -22,7 +22,9 @@ import com.exam.simulator.model.User;
 import com.exam.simulator.repository.UsersRepositiory;
 
 
-@RestController @CrossOrigin(origins = "http://localhost:4200")
+//@RestController @CrossOrigin(origins = "http://localhost:4200")
+
+@RestController @CrossOrigin(origins = "http://d45b3334418e.ngrok.io") 
 public class UserController {	
 	@Autowired
 	private UsersRepositiory usersRepositiory;

@@ -17,7 +17,6 @@ import lombok.ToString;
 public class IdClassUser implements Serializable {
 	private  String user;
 	private  Integer certification;
-	private  Integer question;
-	private  Integer answer;
-
+//	private  Integer question;
+//	private  Integer answer;
 }

@@ -15,8 +15,9 @@ import com.exam.simulator.model.ExamSchedule;
 import com.exam.simulator.model.User;
 import com.exam.simulator.repository.ExamScheduleRepositiory;
 
+@RestController @CrossOrigin(origins = "http://d45b3334418e.ngrok.io") 
 
-@RestController @CrossOrigin(origins = "http://localhost:4200")
+//@RestController @CrossOrigin(origins = "http://localhost:4200")
 public class ExamScheduleController {	
 	@Autowired
 	private ExamScheduleRepositiory examScheduleRepositiory;

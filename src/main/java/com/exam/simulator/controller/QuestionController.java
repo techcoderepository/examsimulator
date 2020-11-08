@@ -1,5 +1,6 @@
 package com.exam.simulator.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import com.exam.simulator.model.Question;
 import com.exam.simulator.repository.QuestionsRepositiory;
 
 
-@RestController @CrossOrigin(origins = "http://localhost:4200")
+//@RestController @CrossOrigin(origins = "http://localhost:4200")
+@RestController @CrossOrigin(origins = "http://d45b3334418e.ngrok.io") 
+
 public class QuestionController {	
 	@Autowired
 	private QuestionsRepositiory questionsRepositiory;
@@ -26,12 +29,12 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/getAllQuestions")
-	public Iterable<Question> getAllQuestions(){			
+	public List<Question> getAllQuestions(){			
 		return 	questionsRepositiory.findAll();				
 	}
 	
 	  @PostMapping(value="/addQuestion") 
-	  public Question addQuestion(@RequestBody Question question ){ 
-		  return questionsRepositiory.save(question);
+	  public Question addQuestion(@RequestBody Question questionList){		  
+		  return  questionsRepositiory.save(questionList);
 	  }	 
 }

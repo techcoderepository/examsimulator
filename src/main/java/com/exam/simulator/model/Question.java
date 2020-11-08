@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Repository;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,23 +27,25 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "QUESTION")
+@Repository
 public class Question implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Question_Squence")
-    @SequenceGenerator(name = "Question_Squence", sequenceName = "QUESTION_ID_SEQ", initialValue=1, allocationSize=1)
-	@Column(name="QUESTION_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Question_Squence")
+	@SequenceGenerator(name = "Question_Squence", sequenceName = "QUESTION_ID_SEQ", initialValue = 1, allocationSize = 1)
+	@Column(name = "QUESTION_ID")
 	private Integer questionId;
+
+	@Column(name = "QUESTION")
+	private String question;
+
+	@Column(name = "ANSWER_TYPE")
+	private String answerType;
 	
-	@Column(name="QUESTION")
-	private String question;	
+	@OneToMany(targetEntity = Answer.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
+	private List<Answer> answer;
 	
-	@Column(name="IS_MULTIPLE_CHHOICE")
-	private Boolean multipleChoice;	
 	
-	  @OneToMany(targetEntity=Answer.class,cascade = CascadeType.ALL)	  
-	  @JoinColumn(name="QUESTION_ID",referencedColumnName = "QUESTION_ID") 
-	  private  List<Answer> answer;
-	 
-	
+
 }
