@@ -3,6 +3,7 @@ package com.exam.simulator.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class ExamSchedule implements Serializable {
 	@Column(name="EXAM_TIME")
 	private String examTime;		
 	
-	@ManyToOne
-	@JoinColumn(name="USER_EMAIL_ID", referencedColumnName = "EMAIL_ID") 
+	@ManyToOne(targetEntity = User.class, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="APP_USER_ID", referencedColumnName = "APP_USER_ID") 
 	private  User user;	 	  
 }

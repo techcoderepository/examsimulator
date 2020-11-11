@@ -34,19 +34,15 @@ public class UserQuestionResponse implements Serializable {
 	@Column(name="USER_QUESTION_RESPONSE_ID")
 	private Integer userQuestionResponseId;
 	
-	@ManyToOne(targetEntity=User.class)
-	@JoinColumn(name="EMAIL_ID",referencedColumnName = "EMAIL_ID") 
+	@ManyToOne(targetEntity=User.class, cascade = CascadeType.PERSIST) 
+	@JoinColumn(name="APP_USER_ID",referencedColumnName = "APP_USER_ID") 
 	private  User user;
 		  
-	@ManyToOne(targetEntity=Certification.class)
-	@JoinColumn(name="CERTIFICATION_ID",referencedColumnName = "CERTIFICATION_ID") 
-	private  Certification certification;
-		
-	@ManyToOne(targetEntity=Question.class)
+	@ManyToOne(targetEntity=Question.class, cascade = CascadeType.PERSIST)
 	@JoinColumn(name="QUESTION_ID",referencedColumnName = "QUESTION_ID") 
 	private  Question question;
 		
-	 @OneToMany(targetEntity=OptionResponse.class,cascade = CascadeType.ALL)	  
+	 @OneToMany(targetEntity=OptionResponse.class, cascade = CascadeType.ALL)	  
 	 @JoinColumn(name="USER_QUESTION_RESPONSE_ID",referencedColumnName = "USER_QUESTION_RESPONSE_ID") 
 	 private  List<OptionResponse> optionResponse;
 }

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,6 +46,10 @@ public class Question implements Serializable {
 	@OneToMany(targetEntity = Answer.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
 	private List<Answer> answer;
+	
+	@ManyToOne(targetEntity=Certification.class, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="CERTIFICATION_ID", referencedColumnName = "CERTIFICATION_ID") 
+	private  Certification certification;
 	
 	
 

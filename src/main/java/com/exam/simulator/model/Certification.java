@@ -1,14 +1,12 @@
 package com.exam.simulator.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,12 +22,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "CERTIFICATIONS")
+@Table(name = "CERTIFICATION")
 @Repository
 public class Certification implements Serializable{
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Certifications_Squence")
-    @SequenceGenerator(name = "Certifications_Squence", sequenceName = "CERTIFICATION_ID_SEQ", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "Certification_Squence")
+    @SequenceGenerator(name = "Certification_Squence", sequenceName = "CERTIFICATION_ID_SEQ", initialValue=1, allocationSize=1)
 	@Column(name="CERTIFICATION_ID")
 	private Integer certificationId;
 	@Column(name="CERTIFICATION_CODE")

@@ -3,8 +3,6 @@ package com.exam.simulator.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +21,7 @@ import com.exam.simulator.model.User;
 import com.exam.simulator.model.UserQuestionResponse;
 import com.exam.simulator.repository.QuestionsRepositiory;
 import com.exam.simulator.repository.UserQuestionResponseRepositiory;
+import com.exam.simulator.repository.UsersRepositiory;
 
 
 //@RestController @CrossOrigin(origins = "http://localhost:4200")
@@ -30,24 +29,8 @@ import com.exam.simulator.repository.UserQuestionResponseRepositiory;
 public class UserQuestionResponseController {	
 	@Autowired
 	private UserQuestionResponseRepositiory userQuestionResponseRepositiory;
-	
-	//@Autowired
-	//private UserQuestionResponse userQuestionResponse= new UserQuestionResponse();
-	
-	//@Autowired
-	private User user = new User();
-	
-	//@Autowired
-	private Certification certification =new Certification();	
-	
-	/*
-	 * @Autowired private Question question;
-	 * 
-	 * @Autowired private Answer answer;
-	 */
-	
 	@Autowired
-	private IdClassUser idClassUser;
+	private UsersRepositiory usersRepositiory;
 	
 	@Autowired
 	private QuestionsRepositiory questionsRepositiory;
@@ -61,8 +44,6 @@ public class UserQuestionResponseController {
 	  @PostMapping(value="/setUserQuestionsResponse",params= {"userEmailId", "certificationId"}) 
 	  public void setUserQuestionResponse(@RequestParam("userEmailId") String userEmailId,
 			  								@RequestParam("certificationId") String certificationId){
-		  user.setEmailId(userEmailId);		  
-		  certification.setCertificationId(Integer.valueOf(certificationId));		  
 		  List<Question> questionlist = questionsRepositiory.findAll();
 		  
 		for (Question question : questionlist) {
@@ -70,7 +51,6 @@ public class UserQuestionResponseController {
 			UserQuestionResponse userQuestionResponse= new UserQuestionResponse();
 			check(question, optionResponseList, userQuestionResponse );			
 		} 
-		
 		 
 	  }	  
 	  
@@ -83,40 +63,14 @@ public class UserQuestionResponseController {
 				optionResponse=null;
 			}
 			
-			userQuestionResponse.setUser(user);
-			userQuestionResponse.setCertification(certification);
 			userQuestionResponse.setQuestion(question);
 			userQuestionResponse.setOptionResponse(optionResponseList);
 			return userQuestionResponseRepositiory.save(userQuestionResponse);
-			//userQuestionResponse=null;
-			//optionResponseList.clear();
 	  }
 	  
-	/*
-	 * @GetMapping(value="/getUserQuestions", params= {"user","question","answer",
-	 * "certification"}) public Optional<UserQuestionResponse>
-	 * getUserQuestions(@RequestParam("user") String user,
-	 * 
-	 * @RequestParam("question") String question,
-	 * 
-	 * @RequestParam("answer") String answer,
-	 * 
-	 * @RequestParam("certification") String certification){
-	 * idClassUser.setUser(user); //
-	 * idClassUser.setQuestion(Integer.valueOf(question));
-	 * //idClassUser.setAnswer(Integer.valueOf(answer));
-	 * idClassUser.setCertification(Integer.valueOf(certification)); return
-	 * userQuestionResponseRepositiory.findById(idClassUser); }
-	 */
-	  
-	
-	@GetMapping(value = "/getUserQuestionsByUserCert", params = { "userEmailId", "certificationId" })
-	public List<UserQuestionResponse> getUserQuestionsByUserCert(@RequestParam("userEmailId") String userEmailId,
-			@RequestParam("certificationId") String certificationId) {
-		user.setEmailId(userEmailId);
-		certification.setCertificationId(Integer.valueOf(certificationId));	
-		//return userQuestionResponseRepositiory.findByUser(user);
-		return userQuestionResponseRepositiory.findByUserandCert(user, certification); 
-	}
+		@GetMapping(value = "/getUserQuestionsByUser", params = { "userEmailId"})
+		public List<UserQuestionResponse> getUserQuestionsByUser(@RequestParam("userEmailId") String userEmailId) {
+			return userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserEmailId(userEmailId)); 
+		} 	  
 	  
 }

@@ -35,7 +35,7 @@ public class UserController {
 	  } 
 	  @PutMapping(value="/updateUser/{userId}") 
 	  public ResponseEntity<User> updateUser(@PathVariable(value = "userId") String userId, @Valid @RequestBody User form)throws ResourceNotFoundException {
-		  User user = usersRepositiory.findById(userId)
+		  User user = usersRepositiory.findById(Integer.valueOf(userId))
 	       .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
 	        user.setFullName(form.getFullName());
@@ -67,10 +67,10 @@ public class UserController {
 	  @DeleteMapping("/deleteUser/{userId}")
 	    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "userId") String userId)
 	         throws ResourceNotFoundException {
-	        User user = usersRepositiory.findById(userId)
+		  User user = usersRepositiory.findById(Integer.valueOf(userId))
 	       .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
-	        usersRepositiory.deleteById(userId);
+	        usersRepositiory.deleteById(Integer.valueOf(userId));
 	        Map<String, Boolean> response = new HashMap<>();
 	        response.put("deleted", Boolean.TRUE);
 	        return response;

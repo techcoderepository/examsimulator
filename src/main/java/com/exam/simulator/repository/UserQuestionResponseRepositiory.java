@@ -13,9 +13,8 @@ import com.exam.simulator.model.UserQuestionResponse;
 
 @Repository
 public interface UserQuestionResponseRepositiory extends JpaRepository<UserQuestionResponse,Integer>{
-	List<UserQuestionResponse> findByCertification(Certification certification);
 	List<UserQuestionResponse> findByUser(User user);
 	
-	@Query("select uqr from UserQuestionResponse uqr where uqr.user =:userEmailId and uqr.certification =:certificationId")
-	List<UserQuestionResponse> findByUserandCert(@Param("userEmailId")User userEmailId, @Param("certificationId") Certification certificationId);
+//	@Query("select uqr from UserQuestionResponse uqr where uqr.user =:userEmailId and uqr.certification =:certificationId")
+	//List<UserQuestionResponse> findByUserandCert(@Param("userEmailId")User userEmailId, @Param("certificationId") Certification certificationId);
 }
