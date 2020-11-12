@@ -30,8 +30,8 @@ public class UserController {
 	private UsersRepositiory usersRepositiory;
 	
 	  @PostMapping(value="/createUser") 
-	  public void saveUser(@RequestBody User user){ 
-		  usersRepositiory.save(user);
+	  public User saveUser(@RequestBody User user){ 
+		  return usersRepositiory.save(user);
 	  } 
 	  @PutMapping(value="/updateUser/{userId}") 
 	  public ResponseEntity<User> updateUser(@PathVariable(value = "userId") String userId, @Valid @RequestBody User form)throws ResourceNotFoundException {
@@ -54,14 +54,8 @@ public class UserController {
 	  } 
 	  
 	  @GetMapping(value="/validateUser/{emailId}") 
-	  public String validateUser(@PathVariable(value = "emailId") String emailId){ 
-		  List<User> userList = usersRepositiory.findByEmailId(emailId);
-		   if(!userList.isEmpty()) {
-			   for(User user:userList) {
-				   return user.getFullName();			   
-		   		}
-		   }
-		  return "Invalid User";
+	  public User validateUser(@PathVariable(value = "emailId") String emailId){ 
+			return usersRepositiory.findUserEmailId(emailId);
 	  } 
 	  
 	  @DeleteMapping("/deleteUser/{userId}")

@@ -24,7 +24,7 @@ public class CertificationController {
 	  } 
 	  
 	  @GetMapping(value="/getCertifications") 
-	  public List<Certification> getAllUsers(){ 
+	  public List<Certification> getAllCertifications(){ 
 		  return certificationsRepositiory.findAll();
 	  }
 }
