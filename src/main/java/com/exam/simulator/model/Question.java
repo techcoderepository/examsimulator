@@ -37,10 +37,10 @@ public class Question implements Serializable {
 	@Column(name = "QUESTION_ID")
 	private Integer questionId;
 
-	@Column(name = "QUESTION")
+	@Column(name = "QUESTION", nullable=false)
 	private String question;
 
-	@Column(name = "ANSWER_TYPE")
+	@Column(name = "ANSWER_TYPE", nullable=false)
 	private String answerType;
 	
 	@OneToMany(targetEntity = Answer.class, cascade = CascadeType.ALL)
@@ -48,7 +48,7 @@ public class Question implements Serializable {
 	private List<Answer> answer;
 	
 	@ManyToOne(targetEntity=Certification.class, cascade = CascadeType.PERSIST)
-	@JoinColumn(name="CERTIFICATION_ID", referencedColumnName = "CERTIFICATION_ID") 
+	@JoinColumn(name="CERTIFICATION_ID", referencedColumnName = "CERTIFICATION_ID", nullable=false) 
 	private  Certification certification;
 	
 	

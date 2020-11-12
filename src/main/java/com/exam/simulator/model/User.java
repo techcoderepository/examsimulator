@@ -37,7 +37,7 @@ public class User implements Serializable{
 	private Integer userId;
 	@Column(name="EMAIL_ID", nullable=false, unique=true)
 	private String emailId;
-	@Column(name="FULL_NAME")
+	@Column(name="FULL_NAME", nullable=false)
 	private String fullName;		
 	@Column(name="PASSSWORD")
 	private String password;		

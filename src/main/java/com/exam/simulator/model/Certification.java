@@ -30,11 +30,11 @@ public class Certification implements Serializable{
     @SequenceGenerator(name = "Certification_Squence", sequenceName = "CERTIFICATION_ID_SEQ", initialValue=1, allocationSize=1)
 	@Column(name="CERTIFICATION_ID")
 	private Integer certificationId;
-	@Column(name="CERTIFICATION_CODE")
+	@Column(name="CERTIFICATION_CODE", nullable=false)
 	private String certificationCode;
-	@Column(name="CERTIFICATION_TITLE")
+	@Column(name="CERTIFICATION_TITLE", nullable=false)
 	private String certificationTitle;
-	@Column(name="CERTIFICATION_BY_COMPANY")	
+	@Column(name="CERTIFICATION_BY_COMPANY", nullable=false)	
 	private String certificationByCompany;		
 	
 	

@@ -30,11 +30,11 @@ public class Answer implements Serializable{
     @SequenceGenerator(name = "Answers_Squence", sequenceName = "ANSWER_ID_SEQ", initialValue=1, allocationSize=1)
 	@Column(name="ANSWER_ID")
 	private Integer answerId;
-	@Column(name="ANSWER")
+	@Column(name="ANSWER", nullable=false)
 	private String answer;
-	@Column(name="IS_CORRECT")
+	@Column(name="IS_CORRECT", nullable=false)
 	private Boolean correct;
-	@Column(name="QUESTION_ID")	
+	@Column(name="QUESTION_ID", nullable=false)	
 	private Integer question;
 	
 }

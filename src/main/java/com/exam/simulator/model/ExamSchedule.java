@@ -34,16 +34,16 @@ public class ExamSchedule implements Serializable {
 	private Integer examScheduleId;
 	
 	@ManyToOne
-	@JoinColumn(name="CERTIFICATION_ID",referencedColumnName = "CERTIFICATION_ID") 
+	@JoinColumn(name="CERTIFICATION_ID",referencedColumnName = "CERTIFICATION_ID", nullable=false) 
 	private Certification certification;
 	
-	@Column(name = "EXAM_DATE")
+	@Column(name = "EXAM_DATE", nullable=false)
 	private Date examDate;	
 	
-	@Column(name="EXAM_TIME")
+	@Column(name="EXAM_TIME", nullable=false)
 	private String examTime;		
 	
 	@ManyToOne(targetEntity = User.class, cascade = CascadeType.PERSIST)
-	@JoinColumn(name="APP_USER_ID", referencedColumnName = "APP_USER_ID") 
+	@JoinColumn(name="APP_USER_ID", referencedColumnName = "APP_USER_ID", nullable=false) 
 	private  User user;	 	  
 }
