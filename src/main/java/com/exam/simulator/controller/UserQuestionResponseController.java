@@ -57,7 +57,7 @@ public class UserQuestionResponseController {
 		 
 	  }	  
 	  
-	  UserQuestionResponse setOption(Question question, List<OptionResponse> optionResponseList, UserQuestionResponse userQuestionResponse ) {
+	  void setOption(Question question, List<OptionResponse> optionResponseList, UserQuestionResponse userQuestionResponse ) {
 		  for (Answer answer : question.getAnswer()) {
 				OptionResponse  optionResponse = new OptionResponse();
 				optionResponse.setAnswer(answer);
@@ -68,14 +68,15 @@ public class UserQuestionResponseController {
 			
 			userQuestionResponse.setQuestion(question);
 			userQuestionResponse.setOptionResponse(optionResponseList);
-			return userQuestionResponseRepositiory.save(userQuestionResponse);
+			userQuestionResponseRepositiory.save(userQuestionResponse);
 	  }
 	  
 		@GetMapping(value = "/getUserQuestionsByUser", params = { "emailId"})
 		public List<UserQuestionResponse> getUserQuestionsByUser(@RequestParam("emailId") String emailId,
 																@RequestParam("certificationId") String certificationId) {
 			setUserQuestionResponse(emailId, certificationId);
-			return userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserByEmailId(emailId)); 
+			
+			return userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserByEmailId(emailId));  
 		} 	  
 	  
 }
