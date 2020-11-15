@@ -19,6 +19,7 @@ import com.exam.simulator.model.OptionResponse;
 import com.exam.simulator.model.Question;
 import com.exam.simulator.model.User;
 import com.exam.simulator.model.UserQuestionResponse;
+import com.exam.simulator.repository.CertificationsRepositiory;
 import com.exam.simulator.repository.QuestionsRepositiory;
 import com.exam.simulator.repository.UserQuestionResponseRepositiory;
 import com.exam.simulator.repository.UsersRepositiory;
@@ -31,30 +32,32 @@ public class UserQuestionResponseController {
 	private UserQuestionResponseRepositiory userQuestionResponseRepositiory;
 	@Autowired
 	private UsersRepositiory usersRepositiory;
-	
 	@Autowired
 	private QuestionsRepositiory questionsRepositiory;
-	 
+	@Autowired
+	private CertificationsRepositiory certificationsRepositiory;
+	
 	  @PostMapping(value="/saveUserQuestionResponse/{userId}") 
 	  public void saveUserQuestionResponse(@PathVariable("userId") String userId, 
 			  								@RequestBody UserQuestionResponse userQuestionResponse ){ 
 		  userQuestionResponseRepositiory.save(userQuestionResponse);
 	  }
 	  
-	  @PostMapping(value="/setUserQuestionsResponse",params= {"userEmailId", "certificationId"}) 
-	  public void setUserQuestionResponse(@RequestParam("userEmailId") String userEmailId,
-			  								@RequestParam("certificationId") String certificationId){
-		  List<Question> questionlist = questionsRepositiory.findAll();
+	  public void setUserQuestionResponse(String emailId, String certificationId){
+		  
+		  List<Question> questionlist = questionsRepositiory.findQuestionsByCertification(
+				  certificationsRepositiory.findByCertificationId(Integer.valueOf(certificationId)));
 		  
 		for (Question question : questionlist) {
 			List<OptionResponse> optionResponseList = new ArrayList<>();
 			UserQuestionResponse userQuestionResponse= new UserQuestionResponse();
-			check(question, optionResponseList, userQuestionResponse );			
+			userQuestionResponse.setUser(usersRepositiory.findUserByEmailId(emailId));
+			setOption(question, optionResponseList, userQuestionResponse);			
 		} 
 		 
 	  }	  
 	  
-	  UserQuestionResponse check(Question question, List<OptionResponse> optionResponseList, UserQuestionResponse userQuestionResponse ) {
+	  UserQuestionResponse setOption(Question question, List<OptionResponse> optionResponseList, UserQuestionResponse userQuestionResponse ) {
 		  for (Answer answer : question.getAnswer()) {
 				OptionResponse  optionResponse = new OptionResponse();
 				optionResponse.setAnswer(answer);
@@ -68,9 +71,11 @@ public class UserQuestionResponseController {
 			return userQuestionResponseRepositiory.save(userQuestionResponse);
 	  }
 	  
-		@GetMapping(value = "/getUserQuestionsByUser", params = { "userEmailId"})
-		public List<UserQuestionResponse> getUserQuestionsByUser(@RequestParam("userEmailId") String userEmailId) {
-			return userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserEmailId(userEmailId)); 
+		@GetMapping(value = "/getUserQuestionsByUser", params = { "emailId"})
+		public List<UserQuestionResponse> getUserQuestionsByUser(@RequestParam("emailId") String emailId,
+																@RequestParam("certificationId") String certificationId) {
+			setUserQuestionResponse(emailId, certificationId);
+			return userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserByEmailId(emailId)); 
 		} 	  
 	  
 }

@@ -28,13 +28,13 @@ public class ExamScheduleController {
 	
 	  @PostMapping(value="/saveExamSchedule") 
 	  public void saveExamSchedule(@RequestBody ExamSchedule examSchedule){ 
-		  examSchedule.setUser(usersRepositiory.findUserEmailId(examSchedule.getUser().getEmailId()));
+		  examSchedule.setUser(usersRepositiory.findUserByEmailId(examSchedule.getUser().getEmailId()));
 		  examScheduleRepositiory.save(examSchedule);
 	  }
 	  	
 	  @GetMapping(value="/getScheduledExamListByEmailId/{userEmailId}") 
 	  public List<ExamSchedule> getScheduledExamListByEmailId(@PathVariable(value = "userEmailId") String userEmailId){
-		  List<ExamSchedule> abc = examScheduleRepositiory.findByUser(usersRepositiory.findUserEmailId(userEmailId));
+		  List<ExamSchedule> abc = examScheduleRepositiory.findByUser(usersRepositiory.findUserByEmailId(userEmailId));
 	   return abc;
 	  }
 	  

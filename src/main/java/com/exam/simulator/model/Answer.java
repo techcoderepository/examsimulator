@@ -33,8 +33,7 @@ public class Answer implements Serializable{
 	@Column(name="ANSWER", nullable=false)
 	private String answer;
 	@Column(name="IS_CORRECT", nullable=false)
-	private Boolean correct;
-	@Column(name="QUESTION_ID", nullable=false)	
-	private Integer question;
-	
+	private Boolean correct;	
+	@Column(name="QUESTION_ID")
+	private Integer question;	
 }

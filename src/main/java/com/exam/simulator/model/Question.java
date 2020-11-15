@@ -51,6 +51,4 @@ public class Question implements Serializable {
 	@JoinColumn(name="CERTIFICATION_ID", referencedColumnName = "CERTIFICATION_ID", nullable=false) 
 	private  Certification certification;
 	
-	
-
-}
+    }

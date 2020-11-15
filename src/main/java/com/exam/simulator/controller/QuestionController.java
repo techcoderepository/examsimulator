@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exam.simulator.model.Answer;
 import com.exam.simulator.model.Question;
 import com.exam.simulator.repository.CertificationsRepositiory;
 import com.exam.simulator.repository.QuestionsRepositiory;
@@ -37,7 +38,7 @@ public class QuestionController {
 	}
 	
 	  @PostMapping(value="/addQuestion") 
-	  public Question addQuestion(@RequestBody Question questionList){		
+	  public Question addQuestion(@RequestBody Question questionList){
 		  questionList.setCertification(certificationsRepositiory
 				  .findByCertificationId(questionList.getCertification().getCertificationId()));
 		  return  questionsRepositiory.save(questionList);

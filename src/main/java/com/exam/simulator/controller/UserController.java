@@ -50,12 +50,12 @@ public class UserController {
 	  
 	  @GetMapping(value="/getUserById/{userId}") 
 	  public List<User> getUserById(@PathVariable(value = "userId") String emailId){ 
-		  return usersRepositiory.findByEmailId(emailId);
+		  return usersRepositiory.findUsersByEmailId(emailId);
 	  } 
 	  
 	  @GetMapping(value="/validateUser/{emailId}") 
 	  public User validateUser(@PathVariable(value = "emailId") String emailId){ 
-			return usersRepositiory.findUserEmailId(emailId);
+			return usersRepositiory.findUserByEmailId(emailId);
 	  } 
 	  
 	  @DeleteMapping("/deleteUser/{userId}")

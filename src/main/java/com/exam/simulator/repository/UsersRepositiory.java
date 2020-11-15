@@ -11,6 +11,6 @@ import com.exam.simulator.model.User;
 @Repository
 public interface UsersRepositiory extends JpaRepository<User, Integer>{	
 	@Query("select user from User user where user.emailId =:emailId")
-	User findUserEmailId(String emailId);
-	List<User> findByEmailId(String emailId);	
+	User findUserByEmailId(String emailId);
+	List<User> findUsersByEmailId(String emailId);	
 }
