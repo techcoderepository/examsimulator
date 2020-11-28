@@ -15,12 +15,14 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @ToString
 @Entity
 @Table(name = "OPTION_RESPONSE")
@@ -38,7 +40,8 @@ public class OptionResponse implements Serializable {
 	 	
 	@Column(name="USER_RESPONSE") 
 	private Boolean userResponse;	
+
+	@Column(name="USER_QUESTION_RESPONSE_ID") 
+	private Integer	userQuestionResponseId;
 	
-	@Column(name="USER_QUESTION_RESPONSE_ID")	
-	private Integer userQuestionResponseId;
 }

@@ -21,16 +21,17 @@ import com.exam.simulator.exception.ResourceNotFoundException;
 import com.exam.simulator.model.User;
 import com.exam.simulator.repository.UsersRepositiory;
 
-
 //@RestController @CrossOrigin(origins = "http://localhost:4200")
 
-@RestController @CrossOrigin(origins = "*") 
+//@RestController @CrossOrigin(origins = "*", maxAge=3600, allowedHeaders={"x-auth-token", "x-requested-with", "x-xsrf-token"}) 
+@RestController @CrossOrigin(origins = "*")
 public class UserController {	
 	@Autowired
 	private UsersRepositiory usersRepositiory;
 	
 	  @PostMapping(value="/createUser") 
 	  public User saveUser(@RequestBody User user){ 
+		  //user.setPassword((new BCryptPasswordEncoder()).encode(user.getPassword()));
 		  return usersRepositiory.save(user);
 	  } 
 	  @PutMapping(value="/updateUser/{userId}") 

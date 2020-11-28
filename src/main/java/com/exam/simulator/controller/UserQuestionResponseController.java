@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,9 +33,8 @@ public class UserQuestionResponseController {
 	@Autowired
 	private CertificationsRepositiory certificationsRepositiory;
 	
-	  @PostMapping(value="/saveUserQuestionResponse/{userId}") 
-	  public void saveUserQuestionResponse(@PathVariable("userId") String userId, 
-			  								@RequestBody UserQuestionResponse userQuestionResponse ){ 
+	  @PostMapping(value="/saveUserQuestionResponse") 
+	  public void saveUserQuestionResponse(@RequestBody UserQuestionResponse userQuestionResponse){ 
 		  userQuestionResponseRepositiory.save(userQuestionResponse);
 	  }
 	  
@@ -65,14 +63,20 @@ public class UserQuestionResponseController {
 			
 			userQuestionResponse.setQuestion(question);
 			userQuestionResponse.setOptionResponse(optionResponseList);
-			userQuestionResponseRepositiory.save(userQuestionResponse);
+			userQuestionResponseRepositiory.saveAndFlush(userQuestionResponse);
 	  }
 	  
 		@GetMapping(value = "/getUserQuestionsByUser", params = { "emailId"})
 		public List<UserQuestionResponse> getUserQuestionsByUser(@RequestParam("emailId") String emailId,
 																@RequestParam("certificationId") String certificationId) {
-			setUserQuestionResponse(emailId, certificationId);
-			return userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserByEmailId(emailId));  
-		} 	  
-	  
+			//setUserQuestionResponse(emailId, certificationId);
+			List<UserQuestionResponse> ls=userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserByEmailId(emailId));
+			return ls;   
+		}
+		
+		@GetMapping(value = "/getExamResult", params = { "emailId"})
+		public List<UserQuestionResponse> getExamResult(@RequestParam("emailId") String emailId) {	
+			List<UserQuestionResponse> ls=userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserByEmailId(emailId));
+			return ls;   
+		} 
 }

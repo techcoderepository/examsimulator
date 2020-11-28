@@ -1,3 +1,6 @@
+Alter session  set container=orclpdb1;
+ALTER DATABASE OPEN;
+
 drop table QUESTIONS;
 drop table Answers;
 drop table user_question_response;
