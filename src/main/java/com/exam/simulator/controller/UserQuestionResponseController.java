@@ -69,7 +69,7 @@ public class UserQuestionResponseController {
 		@GetMapping(value = "/getUserQuestionsByUser", params = { "emailId"})
 		public List<UserQuestionResponse> getUserQuestionsByUser(@RequestParam("emailId") String emailId,
 																@RequestParam("certificationId") String certificationId) {
-			//setUserQuestionResponse(emailId, certificationId);
+		setUserQuestionResponse(emailId, certificationId);
 			List<UserQuestionResponse> ls=userQuestionResponseRepositiory.findByUser(usersRepositiory.findUserByEmailId(emailId));
 			return ls;   
 		}
